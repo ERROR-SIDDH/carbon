@@ -60,5 +60,5 @@ def index():
 #     logs = list(logs_collection.find({}, {"_id": 0}).sort([("_id", -1)]))  # Sort by `_id`
 #     return jsonify(logs)
 
-if __name__ == '__main__':
-    app.run(host="0.0.0.0")
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port= 5000 ,debug=True)
