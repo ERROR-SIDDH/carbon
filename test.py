@@ -21,13 +21,13 @@ def log_specific_emissions(low, moderate, heavy):
     print(f"\nLogging {low} LOW, {moderate} MODERATE, and {heavy} HEAVY emissions...\n")
     for _ in range(low):
         send_request("LOW")
-        time.sleep(0.2)  # Short delay to simulate real requests
+        # time.sleep(0.00002)  # Short delay to simulate real requests
     for _ in range(moderate):
         send_request("MODERATE")
-        time.sleep(0.2)
+        # time.sleep(0.0000000000002)
     for _ in range(heavy):
         send_request("HEAVY")
-        time.sleep(0.2)
+        # time.sleep(0.000000002)
 
 # Function to log random emissions
 def log_random_emissions(n):
@@ -36,7 +36,7 @@ def log_random_emissions(n):
     for _ in range(n):
         emission = random.choice(emission_types)
         send_request(emission)
-        time.sleep(0.2)
+        # time.sleep(0.0002)
 
 # Main function with continuous testing
 def main():
