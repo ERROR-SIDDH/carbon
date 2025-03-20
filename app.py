@@ -41,19 +41,19 @@ def get_data():
 
     return jsonify({"air_quality": air_quality, "emission_counts": counts})
 
-@app.route('/log_emission', methods=['POST'])
-def log_emission():
-    data = request.get_json()
-    emission_type = data.get('type')
-    timestamp = data.get('timestamp')
+# @app.route('/log_emission', methods=['POST'])
+# def log_emission():
+#     data = request.get_json()
+#     emission_type = data.get('type')
+#     timestamp = data.get('timestamp')
 
-    if emission_type not in ['LOW', 'MODERATE', 'HEAVY']:
-        return jsonify({'error': 'Invalid emission type'}), 400
+#     if emission_type not in ['LOW', 'MODERATE', 'HEAVY']:
+#         return jsonify({'error': 'Invalid emission type'}), 400
 
-    logs_collection.insert_one({'type': emission_type, 'timestamp': timestamp})
-    emission_counts_collection.update_one({}, {"$inc": {emission_type: 1}})
+#     logs_collection.insert_one({'type': emission_type, 'timestamp': timestamp})
+#     emission_counts_collection.update_one({}, {"$inc": {emission_type: 1}})
 
-    return jsonify({'message': 'Emission logged successfully'}), 201
+#     return jsonify({'message': 'Emission logged successfully'}), 201
 
 @app.route('/get_logs', methods=['GET'])
 def get_logs():
