@@ -1,0 +1,157 @@
+/* Import JetBrains Mono Font */
+body {
+    font-family: 'JetBrains Mono', monospace;
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+/* Section Titles */
+h1 {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+h2 {
+    color: #bbbbbb;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+/* Section Wrapper */
+.section {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+/* Air Quality Grid */
+.aqi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* Individual Metrics */
+.metric {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    color: #d0d0d0;
+}
+
+/* Emission Table */
+.emission-table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.row {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    color: #d0d0d0;
+}
+
+/* Value Colors */
+.value {
+    font-weight: bold;
+    color: #fff316;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .aqi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .metric {
+        font-size: 1rem;
+    }
+    .row {
+        font-size: 1rem;
+    }
+}
+
+/* Button Styling */
+.btn {
+    background: #fff316;
+    color: #1e1e1e;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    font-family: 'JetBrains Mono', monospace;
+}
+.log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.btn:hover {
+    background: #ffeb3b;
+}
+.btn-close {
+    background: #ff4c4c;
+    color: white;
+}
+.btn-close:hover {
+    background: #ff1a1a;
+}
+
+/* Log Section */
+.log-section {
+    margin-top: 15px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.1);
+    text-align: left;
+    min-height: 100px;
+}
+
+.hidden {
+    display: none;
+}
+
+#log-list {
+    list-style: none;
+    padding: 0;
+}
+#log-list li {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+/* Buttons inside log card */
+.log-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
