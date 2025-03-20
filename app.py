@@ -5,7 +5,7 @@ import requests
 app = Flask(__name__)
 
 # MongoDB setup
-client = MongoClient('mongodb+srv://adminLegit:admin12345@cluster0.wn943.mongodb.net/?retryWrites=true&w=majority')
+client = MongoClient('mongodb+srv://carbon:RmNSueHoAet0TiTL@carbon.s9zxt.mongodb.net/')
 db = client["carbon_emissions"]
 logs_collection = db["logs"]
 emission_counts_collection = db["emission_counts"]
@@ -18,7 +18,7 @@ def initialize_counts():
 initialize_counts()
 
 # WAQI API Setup
-WAQI_API_TOKEN = '46b7f445f6e8a34ecdf1df4e0b9f7c0ce6a7911e'  # Get a free token from https://aqicn.org/data-platform/token/
+WAQI_API_TOKEN = 'b988d55c352bb208874ff9ff8b82975d52210c84'  # Get a free token from https://aqicn.org/data-platform/token/
 WAQI_API_URL = f'https://api.waqi.info/feed/chennai/?token={WAQI_API_TOKEN}'
 
 @app.route('/')
@@ -60,5 +60,5 @@ def get_logs():
     logs = list(logs_collection.find({}, {"_id": 0}).sort([("_id", -1)]))  # Sort by `_id`
     return jsonify(logs)
 
-if __name__ == '__main__':
-    app.run(host="0.0.0.0")
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port= 5000 ,debug=True)
