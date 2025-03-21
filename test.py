@@ -5,7 +5,7 @@ import datetime
 
 
 # Server endpoint
-SERVER_URL = "http://127.0.0.1:5000/log_emission"
+SERVER_URL = "https://carbon-mu-five.vercel.app/log_emission"
 
 # Function to send a request to the server
 def send_request(emission_type):
