@@ -5,7 +5,7 @@ import requests
 app = Flask(__name__)
 
 # MongoDB setup
-client = MongoClient('mongodb+srv://sidharthmannikoth:rvr03xtyS5h1HwS5@cluster0.y2pyp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+client = MongoClient('mongodb+srv://err:osgL0qlw6vqIiF6a@cluster0.y2pyp.mongodb.net')
 db = client["carbon_emissions"]
 logs_collection = db["logs"]
 emission_counts_collection = db["emission_counts"]
