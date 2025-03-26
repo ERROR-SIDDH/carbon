@@ -44,7 +44,8 @@ def get_data():
 @app.route('/log_emission', methods=['POST'])
 def log_emission():
     data = request.get_json()
-    emission_type = data.get('type')
+    print(data)
+    emission_type = data.get('emission')
     timestamp = data.get('timestamp')
 
     if emission_type not in ['LOW', 'MODERATE', 'HEAVY']:

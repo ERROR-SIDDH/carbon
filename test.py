@@ -5,12 +5,12 @@ import datetime
 
 
 # Server endpoint
-SERVER_URL = "https://carbon-mu-five.vercel.app/log_emission"
+SERVER_URL = "http://localhost:5000//log_emission"
 
 # Function to send a request to the server
 def send_request(emission_type):
     timestamp = datetime.datetime.now().isoformat()
-    response = requests.post(SERVER_URL, json={"type": emission_type , "timestamp" : timestamp})
+    response = requests.post(SERVER_URL, json={"emission": emission_type , "timestamp" : timestamp})
     if response.status_code == 201:
         print(f"✅ Logged {emission_type} emission successfully!")
     else:
