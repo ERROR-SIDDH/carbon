@@ -1,11 +1,18 @@
 from flask import Flask, render_template, request, jsonify
 from pymongo import MongoClient
 import requests
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 app = Flask(__name__)
 
+# Load secret values from environment variables
+MONGO_URI = os.getenv('MONGO_URI', 'your-default-mongo-uri')  # Replace with a default value if needed
+WAQI_API_TOKEN = os.getenv('WAQI_API_TOKEN', 'your-default-waqi-token')  # Replace with a default value if needed
+
 # MongoDB setup
-client = MongoClient('mongodb+srv://err:osgL0qlw6vqIiF6a@cluster0.y2pyp.mongodb.net')
+client = MongoClient(MONGO_URI)
 db = client["carbon_emissions"]
 logs_collection = db["logs"]
 emission_counts_collection = db["emission_counts"]
@@ -18,7 +25,6 @@ def initialize_counts():
 initialize_counts()
 
 # WAQI API Setup
-WAQI_API_TOKEN = 'b988d55c352bb208874ff9ff8b82975d52210c84'  # Get a free token from https://aqicn.org/data-platform/token/
 WAQI_API_URL = f'https://api.waqi.info/feed/chennai/?token={WAQI_API_TOKEN}'
 
 @app.route('/')
@@ -36,7 +42,7 @@ def get_data():
     else:
         air_quality = None
 
-    # Fetch emission counts  from MongoDB
+    # Fetch emission counts from MongoDB
     counts = emission_counts_collection.find_one({}, {"_id": 0})
 
     return jsonify({"air_quality": air_quality, "emission_counts": counts})
@@ -62,4 +68,4 @@ def get_logs():
     return jsonify(logs)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port= 5000 ,debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
