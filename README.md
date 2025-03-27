@@ -3,6 +3,7 @@
 This project collects carbon emission data using an ESP8266-based hardware setup and integrates it into a centralized logging system. The server provides real-time air quality metrics and logs emissions for analysis.
 
 ---
+![image](https://github.com/user-attachments/assets/6466fec3-d8b0-4186-8ec3-50c724ef4aca)
 
 ## 🛠️ Features
 
