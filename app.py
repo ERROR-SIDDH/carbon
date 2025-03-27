@@ -36,7 +36,7 @@ def get_data():
     else:
         air_quality = None
 
-    # Fetch emission counts from MongoDB
+    # Fetch emission counts  from MongoDB
     counts = emission_counts_collection.find_one({}, {"_id": 0})
 
     return jsonify({"air_quality": air_quality, "emission_counts": counts})
