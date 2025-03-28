@@ -4,9 +4,9 @@
 #include <NTPClient.h>
 
 // WiFi Credentials
-const char* ssid = "<add_your_wifi_ssid>";
-const char* password = "<add_wifi_passowrd>";
-const char* serverUrl = "<enter_server_url_with_route>";  // Update IP if needed
+const char* ssid = "<chnage_to_ssid>";
+const char* password = "<ssid-pass>";
+const char* serverUrl = "https://carbon-mu-five.vercel.app/log_emission";  // Update IP if needed
 
 // Define DIP switch input pins
 #define DIP1 5  // D1 -  connect first DIP switch here
@@ -151,9 +151,10 @@ void calculateEmissions() {
 // Function to send emission data to the server
 void sendEmissionData(String fuel, String traffic, String timeOfDay, String idle, String distance, String emission, String timestamp) {
     if (WiFi.status() == WL_CONNECTED) {
-        WiFiClient client;
+        WiFiClientSecure client;
+        client.setInsecure();  // Use insecure mode for HTTPS
+        
         HTTPClient http;
-
         http.begin(client, serverUrl);
         http.addHeader("Content-Type", "application/json");
 
@@ -162,12 +163,14 @@ void sendEmissionData(String fuel, String traffic, String timeOfDay, String idle
                          "\"timestamp\":\"" + timestamp + "\""
                          "}";
 
+        Serial.println("📡 Sending data to server: " + payload);
         int httpResponseCode = http.POST(payload);
 
-        if (httpResponseCode != 400) {
-            Serial.println("✅ Emission data sent successfully!");
+        if (httpResponseCode > 0) {
+            Serial.println("✅ Server Response: " + String(httpResponseCode));
+            Serial.println("📩 Response Payload: " + http.getString());
         } else {
-            Serial.println("❌ Failed to send data. Error: " + String(httpResponseCode));
+            Serial.println("❌ Error sending data. HTTP Code: " + String(httpResponseCode));
         }
 
         http.end();
@@ -175,6 +178,7 @@ void sendEmissionData(String fuel, String traffic, String timeOfDay, String idle
         Serial.println("❌ WiFi Disconnected! Can't send data.");
     }
 }
+
 
 void setup() {
     Serial.begin(115200);
